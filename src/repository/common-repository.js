@@ -3,9 +3,9 @@
 const dbOp = require('./db-operation')
 const _ = require('lodash')
 
-const getData = async (query, projection, collection, db) => {
+const getData = async (query, projection, collection, database) => {
   try {
-    const DB = await global.db.connect(db)
+    const DB = await global.db.connect(database)
     const model = await DB.model(collection)
     const response = await model.find(query, projection).exec()
     return response 
@@ -14,9 +14,9 @@ const getData = async (query, projection, collection, db) => {
   }
 }
 
-const updateData = async (query, data, collection, db) => {
+const updateData = async (query, data, collection, database) => {
   try {
-    const DB = await global.db.connect(db)
+    const DB = await global.db.connect(database)
     const model = await DB.model(collection)
     const response = await model.updateMany(query, dbOp.getUpdateJsonFormat(data), dbOp.getUpdatedJsonInResponse(true)).exec()
     return response
@@ -25,9 +25,9 @@ const updateData = async (query, data, collection, db) => {
   }
 }
 
-const insertData = async function (data, collection, db) {
+const insertData = async (data, collection, database) => {
   try {
-    const DB = await global.db.connect(db)
+    const DB = await global.db.connect(database)
     const model = await DB.model(collection)
     const response = await model.insertMany(data)
     return response
@@ -36,9 +36,9 @@ const insertData = async function (data, collection, db) {
   }
 }
 
-const deleteData = async (query, collection, db) => {
+const deleteData = async (query, collection, database) => {
   try {
-    const DB = await global.db.connect(db)
+    const DB = await global.db.connect(database)
     const model = await DB.model(collection)
     const response = await model.remove(query).exec()
     return response
@@ -47,9 +47,9 @@ const deleteData = async (query, collection, db) => {
   }
 }
 
-const updateOne = async (query, data, collection, db) => {
+const updateOne = async (query, data, collection, database) => {
   try {
-    const DB = await global.db.connect(db)
+    const DB = await global.db.connect(database)
     const model = await DB.model(collection)
     const response = await model.findOneAndUpdate(query, dbOp.getUpdateJsonFormat(data), dbOp.getUpdatedJsonInResponse(true)).exec()
     return response
@@ -58,9 +58,9 @@ const updateOne = async (query, data, collection, db) => {
   }
 }
 
-const getDataWithAggregate = async function (query, collection, db) {
+const getDataWithAggregate = async (query, collection, database) => {
   try {
-    const DB = await global.db.connect(db)
+    const DB = await global.db.connect(database)
     const model = await DB.model(collection)
     const response = await model.aggregate(query)
     return response
