@@ -7,7 +7,7 @@ const getData = async (query, projection, collection, database) => {
   try {
     const DB = await global.db.connect(database)
     const model = await DB.model(collection)
-    const response = await model.find(query, projection)
+    const response = await model.find(query, projection).exec()
     return response 
   } catch (error) {
     throw error
@@ -18,7 +18,7 @@ const updateData = async (query, data, collection, database) => {
   try {
     const DB = await global.db.connect(database)
     const model = await DB.model(collection)
-    const response = await model.updateMany(query, dbOp.getUpdateJsonFormat(data), dbOp.getUpdatedJsonInResponse(true))
+    const response = await model.updateMany(query, dbOp.getUpdateJsonFormat(data), dbOp.getUpdatedJsonInResponse(true)).exec()
     return response
   } catch (error) {
     throw error
@@ -51,7 +51,7 @@ const updateOne = async (query, data, collection, database) => {
   try {
     const DB = await global.db.connect(database)
     const model = await DB.model(collection)
-    const response = await model.findOneAndUpdate(query, dbOp.getUpdateJsonFormat(data), dbOp.getUpdatedJsonInResponse(true))
+    const response = await model.findOneAndUpdate(query, dbOp.getUpdateJsonFormat(data), dbOp.getUpdatedJsonInResponse(true)).exec()
     return response
   } catch (error) {
     throw error
@@ -62,7 +62,7 @@ const getDataWithAggregate = async (query, collection, database) => {
   try {
     const DB = await global.db.connect(database)
     const model = await DB.model(collection)
-    const response = await model.aggregate(query)
+    const response = await model.aggregate(query).exec()
     return response
   } catch (error) {
     throw error
