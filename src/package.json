@@ -1,6 +1,6 @@
 {
   "name": "@ravibhundia/mongoose-db-repositories",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "This repo is used for common mongo DB operation",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "Ravi Bhundia",
   "license": "ISC",
   "dependencies": {
-    "@ravibhundia/mongoose-db-schema": "^1.2.2",
+    "@ravibhundia/mongoose-db-schema": "^1.3.0",
     "lodash": "^4.17.20",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
