@@ -69,11 +69,23 @@ const getDataWithAggregate = async (query, collection, database) => {
   }
 }
 
+const getDataWithOption = async (query, projection, options, collection, database) => {
+  try {
+    const DB = await global.db.connect(database)
+    const model = await DB.model(collection)
+    const response = await model.find(query, projection, options).exec()
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   getData,
   updateData,
   insertData,
   deleteData,
   updateOne,
-  getDataWithAggregate
+  getDataWithAggregate,
+  getDataWithOption
 }
